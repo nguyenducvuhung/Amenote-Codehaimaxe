@@ -1,23 +1,6 @@
-java_library(
-    name = "dropwizard_guicey",
-    visibility = [
-        "//visibility:public",
-    ],
-    exports = [
-        ":generics_resolver",
-        "//external:jar/ru/vyarus/dropwizard_guicey",
-        "//third-party/generated/deps/com/google/inject:guice",
-        "//third-party/generated/deps/com/google/inject/extensions:guice_servlet",
-        "//third-party/generated/deps/io/dropwizard:dropwizard_core",
-    ],
-)
-
-java_library(
-    name = "generics_resolver",
-    visibility = [
-        "//third-party/generated/deps:__subpackages__",
-    ],
-    exports = [
-        "//external:jar/ru/vyarus/generics_resolver",
-    ],
-)
+  
+#EXTM3U 
+#EXTINF:-1 tvg-id="Ecmin" tvg-logo="https://ibb.co/ZfDWXGd", HBO
+http://172.17.1.225/tmp_hls/stream/index.m3u8
+#EXTINF:-1 group-title="KÊNH ĐỊA PHƯƠNG" tvg-logo="https://i.ibb.co/R0tqK7Y/angiangtvlogobyvovanloc.png", An Giang
+http://livecdn.fptplay.net/sda/angiang_2000.stream/playlist.m3u8
