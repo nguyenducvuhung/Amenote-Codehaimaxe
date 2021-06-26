@@ -1,0 +1,30 @@
+language: java
+
+jdk: openjdk11
+
+services:
+  - docker
+
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8'
+        key_url: 'https://bazel.build/bazel-release.pub.gpg'
+    packages:
+      - bazel
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+        - bazel run //:puml-image-push
+    - stage: deploy
+      if: branch = master
+      script:
+        - curl https://cli-assets.heroku.com/install-ubuntu.sh | sh > /dev/null
+        - heroku container:login
+        - docker build --build-arg TAG=$TRAVIS_COMMIT -t registry.heroku.com/$APP/web -f Dockerfile.heroku .
+        - docker push registry.heroku.com/$APP/web
+        - heroku container:release web --app $APP
+

@@ -1,0 +1,8 @@
+logging:
+  level: INFO
+server:
+  adminConnectors: []
+  applicationConnectors:
+    - type: http
+      port: ${PORT:-8080}
+credentials: []
